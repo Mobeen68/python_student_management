@@ -1,17 +1,13 @@
 import pytest
-from pathlib import Path
 
 from app.models.student import Student
 from app.services.student_manager import StudentManager
-from app.storage.json_storage import JsonStorage
+from app.storage.memory_storage import MemoryStorage
 
 @pytest.fixture
-def manager(tmp_path: Path) -> StudentManager:
-    # 1. Create a safe, temporary path unique to this test run
-    test_file: Path = tmp_path / "test_students.json"
+def manager() -> StudentManager:
     
-    # 2. Inject this temporary path into your storage engine
-    return StudentManager(JsonStorage(file_path=str(test_file)))
+    return StudentManager(MemoryStorage())
 
 def test_add_student(manager: StudentManager):
     manager.add_student(Student("Ali", 20, 'test@test.com'))

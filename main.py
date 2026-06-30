@@ -1,6 +1,7 @@
 from app.models.student import Student
 from app.services.student_manager import StudentManager
 from app.storage.json_storage import JsonStorage
+from app.exceptions.student_exceptions import DuplicateStudentError
 
 manager = StudentManager(JsonStorage())
 
@@ -30,7 +31,7 @@ while True:
             try:
                 manager.add_student(Student(name=name, age=age, email=email))
                 print('Student Added successfully')
-            except ValueError as e:
+            except DuplicateStudentError as e:
                 print(e)
         case 2:
             email = str(input('Enter the email of student that you want to remove: '))

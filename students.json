@@ -2,16 +2,6 @@
     {
         "name": "Mobeen",
         "age": 12,
-        "email": "mobeene@test.com"
-    },
-    {
-        "name": "mob",
-        "age": 12,
-        "email": "mon"
-    },
-    {
-        "name": "Ali",
-        "age": 20,
-        "email": "test@test.com"
+        "email": "mob"
     }
 ]
