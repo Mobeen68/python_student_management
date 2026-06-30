@@ -1,5 +1,6 @@
 from ..models.student import Student
 from ..storage.json_storage import JsonStorage
+from app.exceptions.student_exceptions import DuplicateStudentError
 
 class StudentManager():
     def __init__(self, storage: JsonStorage):
@@ -14,7 +15,9 @@ class StudentManager():
             raise ValueError('Invalid age')
         
         if self.find_student(student.email):
-            raise ValueError('Student already exist')
+            raise DuplicateStudentError(
+                f"Student with email {student.email} already exists."
+                )
         
         self.students.append(student)
         self.storage.save(self.students)
